@@ -1,0 +1,41 @@
+{% load static %}
+<section class="banner">
+    <div class="container">
+        <div class="bg-image">
+            <div class="overlay"></div>
+            <h3 class="banner-text">Mentor-space where you will get support</h3>
+            <form class="search-bar" method="get">
+                <div class="search-item bor-right">
+                    <h4>School</h4>
+                    <select name="school_name">
+                        <option value="">All</option>
+                        {% for school in schools %}
+                            <option value="{{ school.name }}" >{{ school.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="search-item ">
+                    <h4>Campus</h4>
+                    <select name="campus">
+                        <option value="">Not required</option>
+                        {% for campus in campus %}
+                            <option value="{{ campus.name }}">{{ campus.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="search-glas">
+                    <button class="search-glass">
+                        <img src="{% static 'space/img/search.png' %}" alt="">
+                        <span>Search</span>
+                    </button>
+                    
+                </div>
+
+            </form>
+
+        </div>
+        <!-- <img src="{% static 'space/img/background.jpg' %}" alt=""> -->
+    </div>
+</section>

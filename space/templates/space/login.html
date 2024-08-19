@@ -1,0 +1,75 @@
+{% extends 'space/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'space/inc/nav.html' %}
+    
+    <div class="container">
+        <div class="login-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-error">{{form.non_field_errors}}</div>
+                {{form}}
+                <button class="login-btn" type="submit">Login</button>
+            </form>
+        </div>   
+        
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-box">
+                    <a href="" class="footer-title">EnglishPH</a>
+                    <span><img src="{% static 'space/img/telephone.png' %}" alt="">+63 919-330-3237</span>
+
+                    <span><img src="{% static 'space/img/mail.png' %}" alt="">+63 919-330-3237</span>
+                </div>
+
+                <div class="footer-box">
+                    <p class="footer-small">
+                        Programs
+                    </p>
+                    <ul>
+                        <li><a href="#">English</a></li>
+                        <li><a href="#">IELTS prep</a></li>
+                        <li><a href="#">Business English</a></li>
+                        <li><a href="#">English for IT</a></li>
+                        <li><a href="#">Family programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <p class="footer-small">
+                        Our partners
+                    </p>
+                    <ul>
+                        <li><a class="btn2" href="#">Booking</a></li>
+                        <li><a class="btn2" href="#">Aviasales</a></li>
+                        <li><a class="btn2" href="#">Cebu pacific</a></li>
+                        <li><a class="btn2" href="#">PhilFun Travel</a></li>
+                        <li><a class="btn2" href="#">Family programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box-socials">
+                    <p class="footer-small">
+                        Our socials
+                    </p>
+                    <ul class="footer-socials">
+                        <li><a href="#"><img src="{% static 'space/img/instagram.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/telegram.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/whatsapp.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/youtube.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/facebook.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/vk.png' %}" alt=""></a> </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="sub-footer">
+                <a href="#" class="rights">All rights are reserved 2024</a>
+                <a href="#" class="conf">Policy of confidentiality</a>
+            </div>
+        </footer>   
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav>
+    <div class="container">
+        <div class="nav">
+            <span class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'space/img/logo.png' %}" alt="logo">
+                    <h1>EnglishPH</h1>
+                </a>
+            </span>
+
+            <!-- <ul class="schools">
+                <li><a class="btn" href="#">School</a> </li>
+                <select name="course" id="course">
+                    <option value="courses" selected> courses</option>
+                    <option value="it">IT</option>
+                    <option value="it">Marketing</option>
+                    <option value="it">Sales</option>
+                </select>
+
+            </ul> -->
+
+            <ul class="socials">
+                <li><a href="#"><img src="{% static 'space/img/instagram.png' %}" alt=""></a> </li>
+                <li><a href="#"><img src="{% static 'space/img/telegram.png' %}" alt=""></a> </li>
+                <li><a href="#"><img src="{% static 'space/img/whatsapp.png' %}" alt=""></a> </li>
+                <li><a href="#"><img src="{% static 'space/img/youtube.png' %}" alt=""></a> </li>
+                <li><a href="#"><img src="{% static 'space/img/facebook.png' %}" alt=""></a> </li>
+                <li><a href="#"><img src="{% static 'space/img/vk.png' %}" alt=""></a> </li>
+            </ul>
+
+            <ul class="account">
+                {% if request.user.is_authenticated %}
+                <a class="btn " href="{% url 'profile' %}">Profile</a>
+                <a class="btn " href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a class="btn " href="{% url 'login' %}">Login</a>
+                <a class="btn " href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </ul>
+        </div>
+    </div>        
+</nav>

@@ -1,0 +1,156 @@
+{% extends 'space/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'space/inc/nav.html' %}
+    
+    {% include 'space/inc/banner.html' %}
+
+    <div class="container">
+        <section class="courses">
+            <div class="courses-info">
+                <h4>List of schools</h4>
+                <form class="info-sort" method="get">
+                    <div class="info-sort__sort">
+                        <!-- <p>Sorting</p>
+                        <select name="sort" id="">
+                            <option value="low">Low</option>
+                            <option value="medium">Media</option>
+                            <option value="high">High</option>
+                        </select> -->
+                    </div>
+                    <div class="info-sort__price">
+                        <p>Price</p>
+                        <div class="price-details">
+                            <div class="price-digits">
+                                <span>from <input id="min" value="{{min_price}}" type="number"></span>
+                                <span>to <input id="max" type="number" value="{{max_price}}"> $</span>
+                                <button type="submit">
+                                    <img src="{% static 'space/img/search.png' %}" alt="">
+                                </button>
+                                
+                            </div>
+                            
+                            <div class="range-slider">
+                                <input type="range" min="{{ min_price }}" max="{{ max_price }}" value="25" id="slider-lower">
+                                <input type="range" min="{{ min_price }}" max="{{ max_price }}" value="75" id="slider-upper">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            {% if mes %}
+            <div class="messages">{{mes}}</div>
+            {% endif %}
+            <div class="course-items">
+                {% for school in page_obj %}
+                <div class="course-item">
+                    
+                        {% if school.photos %}
+                        <img src="{{ school.photos.url  }}" alt="">
+                        {% endif %}
+                    <div class="course-stars">
+                        <img src="{% static 'space/img/star.png' %}" alt="">
+
+                        <p><span class="course-rate" >{{school.rating}}</span> out of 5</p>
+                    </div>
+                    <div class="course-item_details">
+                        <div class="sup">from {{school.age}} years old</div>
+                        <div class="item-title">
+                            {{school.name}}
+                        </div>
+                        <div class="item-text">
+                            {{school.school_info|truncatewords:20}}
+                        </div>
+                        <div class="more-info">
+                            <div class="item-price">
+                                <span>{{school.price}}</span> $
+                            </div>
+
+                            <a class="btn  item-more " href="{% url 'school' school.slug %}">More info</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="course-pagination">
+                <ul class="pagins">
+                    {% if page_obj.has_previous %}
+                        <li class="pagin right"><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+            
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="pagin pagin-active">{{ num }}</li>
+                        {% else %}
+                            <li class="pagin"><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+            
+                    {% if page_obj.has_next %}
+                        <li class="pagin left"><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>     
+        <footer>
+            <div class="footer-content">
+                <div class="footer-box">
+                    <a href="" class="footer-title">EnglishPH</a>
+                    <span><img src="{% static 'space/img/telephone.png' %}" alt="">+63 919-330-3237</span>
+
+                    <span><img src="{% static 'space/img/mail.png' %}" alt="">+63 919-330-3237</span>
+                </div>
+
+                <div class="footer-box">
+                    <p class="footer-small">
+                        Programs
+                    </p>
+                    <ul>
+                        <li><a href="#">English</a></li>
+                        <li><a href="#">IELTS prep</a></li>
+                        <li><a href="#">Business English</a></li>
+                        <li><a href="#">English for IT</a></li>
+                        <li><a href="#">Family programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <p class="footer-small">
+                        Our partners
+                    </p>
+                    <ul>
+                        <li><a class="btn2" href="#">Booking</a></li>
+                        <li><a class="btn2" href="#">Aviasales</a></li>
+                        <li><a class="btn2" href="#">Cebu pacific</a></li>
+                        <li><a class="btn2" href="#">PhilFun Travel</a></li>
+                        <li><a class="btn2" href="#">Family programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box-socials">
+                    <p class="footer-small">
+                        Our socials
+                    </p>
+                    <ul class="footer-socials">
+                        <li><a href="#"><img src="{% static 'space/img/instagram.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/telegram.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/whatsapp.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/youtube.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/facebook.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/vk.png' %}" alt=""></a> </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="sub-footer">
+                <a href="#" class="rights">All rights are reserved 2024</a>
+                <a href="#" class="conf">Policy of confidentiality</a>
+            </div>
+        </footer>   
+    </div>
+    
+{% endblock %}

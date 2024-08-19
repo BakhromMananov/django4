@@ -1,0 +1,173 @@
+{% extends 'space/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'space/inc/nav.html' %}
+    
+    <div class="container">
+        <section class="courses">
+            <div class="courses-info">
+                <div class="name-loc">
+                    <h4>{{school.name}}</h4>
+                    <div class="location">
+                        <img src="{% static 'space/img/pin.png' %}" alt="">
+                        <p>{{school.campus}}</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="share">
+                    <a href="#">
+                        <img src="{% static 'space/img/share.png' %}" alt="">
+                    <p>Share</p>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <div class="school-details">
+                {% if school.photos %}
+                <div class="school-photos">
+                    <img src="{{school.photos.url}}" alt="" class="first-photo">
+                    <div class="small-photos">
+                        <img src="{{school.photos.url}}" alt="">
+                        <img src="{{school.photos.url}}" alt="">
+                        <img src="{{school.photos.url}}" alt="">
+                        <img src="{{school.photos.url}}" alt="">
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="school-info">
+                    <div class="tab-content active">
+                        <h3 class="active">Information</h3>
+                        <div class="tab-content_block active">
+                            <p class="active">{{school.school_info}}</p>
+                        </div>
+                        
+                    </div>
+                    <div class="tab-content">
+                        <h3>Courses</h3>
+                        <div class="tab-content_block">
+                            
+                            <a href="#">{{school.courses}}</a>
+                            
+
+                        </div>
+                        
+                    </div>
+                    <div class="tab-content">
+                        <h3>Campus</h3>
+                        <div class="tab-content_block">
+                            <p>{{school.campus}}</p>
+                        </div>
+                        
+                    </div>
+                    <div class="tab-content">
+                        <h3>Photos</h3>
+                        <div class="tab-content_block">
+                            <img class="" src="{{school.photos.url}}" alt="">
+                        </div>
+                        
+
+                    </div>
+                    <div class="tab-content">
+                        <h3>Feedbacks</h3>
+                        <div class="tab-content_block">
+                            <p>{{school.feedback}}</p>
+                        </div>
+                        
+                    </div>
+
+                    <div class="tab-content">
+                        <h3>Contacts</h3>
+                        <div class="tab-content_block">
+                            <p>{{school.contact}}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <a class=" main-page btn" href="{% url 'home' %}">Main page</a>
+            
+            <div class="course-pagination">
+                <ul class="pagins">
+                    {% if page_obj.has_previous %}
+                        <li class="pagin right"><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+            
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="pagin pagin-active">{{ num }}</li>
+                        {% else %}
+                            <li class="pagin"><a href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+            
+                    {% if page_obj.has_next %}
+                        <li class="pagin left"><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>     
+        <footer>
+            <div class="footer-content">
+                <div class="footer-box">
+                    <a href="" class="footer-title">EnglishPH</a>
+                    <span><img src="{% static 'space/img/telephone.png' %}" alt="">+63 919-330-3237</span>
+
+                    <span><img src="{% static 'space/img/mail.png' %}" alt="">+63 919-330-3237</span>
+                </div>
+
+                <div class="footer-box">
+                    <p class="footer-small">
+                        Programs
+                    </p>
+                    <ul>
+                        <li><a href="#">English</a></li>
+                        <li><a href="#">IELTS prep</a></li>
+                        <li><a href="#">Business English</a></li>
+                        <li><a href="#">English for IT</a></li>
+                        <li><a href="#">Family programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <p class="footer-small">
+                        Our partners
+                    </p>
+                    <ul>
+                        <li><a class="btn2" href="#">Booking</a></li>
+                        <li><a class="btn2" href="#">Aviasales</a></li>
+                        <li><a class="btn2" href="#">Cebu pacific</a></li>
+                        <li><a class="btn2" href="#">PhilFun Travel</a></li>
+                        <li><a class="btn2" href="#">Family programs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box-socials">
+                    <p class="footer-small">
+                        Our socials
+                    </p>
+                    <ul class="footer-socials">
+                        <li><a href="#"><img src="{% static 'space/img/instagram.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/telegram.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/whatsapp.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/youtube.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/facebook.png' %}" alt=""></a> </li>
+                        <li><a href="#"><img src="{% static 'space/img/vk.png' %}" alt=""></a> </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="sub-footer">
+                <a href="#" class="rights">All rights are reserved 2024</a>
+                <a href="#" class="conf">Policy of confidentiality</a>
+            </div>
+        </footer>   
+    </div>
+
+    
+
+{% endblock %}
